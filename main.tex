@@ -1,0 +1,152 @@
+\documentclass{myarticle}
+\usepackage[spanish]{babel}
+\selectlanguage{spanish}
+\usepackage{amsmath,amssymb,amsfonts,latexsym}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usepackage{mathrsfs,calrsfs}
+\usepackage{enumerate}
+\usepackage{pb-diagram}
+\usepackage{hyperref}
+\usepackage{mathptmx}
+%\usepackage[sc]{mathpazo}
+\newcommand{\fina}[1]{\mathcal{#1}}
+\newcommand{\partes}[1]{\mathcal{P}({#1})}
+\newcommand{\sets}[1]{\left\{{#1}\right\}}
+\newcommand{\setss}[1]{\lbrace #1\rbrace}
+\newcommand{\abierto}[1]{\left({#1}\right)}
+\newcommand{\cerrado}[1]{\left[{#1}\right]}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\abss}[1]{\vert #1 \vert}
+\newcommand{\absk}[2]{\left|{#1}\right|_{\infty\,{#2}}}
+\newcommand{\abssk}[2]{{\vert #1 \vert}_{\infty\,{#2}}}
+\newcommand{\inner}[1]{\left\langle{#1}\right\rangle}
+\newcommand{\norma}[1]{\left\|{#1}\right\|}
+\newcommand{\normasup}[1]{\left\|{#1}\right\|_\infty}
+\newcommand{\normasups}[1]{\Vert #1\Vert_\infty}
+\newcommand{\normas}[1]{\Vert #1\Vert}
+\newcommand{\normap}[3]{{\left\|{#1}\right\|}_{L^{#2}(#3)}}
+\newcommand{\normasp}[3]{{\Vert #1\Vert}_{L^{#2}(#3)}}
+\newcommand{\normak}[2]{\left\|{#1}\right\|_{\infty, #2}}
+\newcommand{\normask}[2]{{\Vert #1\Vert}_{\infty\, #2}}
+\newcommand{\naturales}{\mathbb{N}}
+\newcommand{\reales}{\mathbb{R}}
+\newcommand{\complejos}{\mathbb{C}}
+\newcommand{\enteros}{\mathbb{Z}}
+\newcommand{\cuerpo}{\mathbb{K}}
+\newcommand{\toro}{\mathbb{T}}
+\newcommand{\dparcial}[2]{\displaystyle\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\cu}[1]{\mathcal{#1}}
+\newcommand{\dpart}[2]{\partial_{#1}^{#2}}
+\newcommand{\fcoef}[2]{\widehat{#1}\left({#2}\right)}
+\newcommand{\tf}[3]{{#1}e^{-2\pi i{#2}\cdot {#3}}\,}
+\newcommand{\fin}[3]{{#1}e^{2\pi i{#2}\cdot {#3}}\,}
+\newcommand{\flr}{\rightsquigarrow}
+\newcommand{\lp}[2]{L^{#1}(#2)}
+\newcommand{\ldos}{L^2}
+\newcommand{\hp}[2]{H^{#1}(#2)}
+\newcommand{\udisc}{\mathbb{D}}
+\newcommand{\base}[1]{\mathcal{B}_{#1}}
+\newcommand{\per}{\mathcal{P}}
+\newcommand{\sch}[1]{\mathcal{S}(#1)}
+\newcommand{\dk}[2]{#1^{(#2)}}
+\newcommand{\derdos}[2]{\frac{\partial^{#1}#2}{\partial x_i^{#1}}}
+\makeatletter
+\newcommand*\cdott{\mathpalette\cdott@{.7}}
+\newcommand*\cdott@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+\begin{document}
+\section{Lema 3.3}
+
+$K$ es una función medible que satisface las siguientes condiciones:
+\begin{align}
+    \text{ Existe }B>0\text{ tal que }\abss{K(x)}\leq B\abs{x}^{-d},\text{ para casi todo }x\in\reales^d,\hspace{2.3cm}\label{lem33.1}\\
+    \text{ Con el mismo valor }B,\,\, \int_{\abs{x}\geq 2\abs{y}}\abss{K(x-y)-K(x)}\, dx\leq B,\text{ para todo }y\neq 0,\label{lem33.2}\\
+    \int_{R_1<\abs{x}<R_2}K(x)\, dx=0, \text{ para }0<R_1<R_2<\infty,\text{ cualesquiera.}\hspace{2.3cm}\label{lem33.3} 
+\end{align}
+
+\begin{proposition}
+Sea $K$ una función medible que satisface las condiciones \eqref{lem33.1}, \eqref{lem33.2} y \eqref{lem33.3}. Si
+para cada $a>0$ se define la función $K_a$ por la fórmula
+\begin{equation}\label{lem33.4}
+  K_\epsilon(x):=
+\left\{
+\begin{array}{cc}
+    K(x), &\abs{x}\geq\epsilon  \\
+     0,&\abs{x}<\epsilon 
+\end{array}
+\right.  
+\end{equation}
+Entonces $K_a\in\lp{2}{\reales^d}$, para cada $a>0$, y además existe $C>0$ que depende únicamente de la dimensión $d$, tal que para todo $a>0$ se satisface
+$$\sup_{y\in\reales^d}\abss{\widehat{K_a}(y)}\leq CB.$$
+\end{proposition}
+\dem{
+Si fijamos $a>0$, la primera afirmación se obtiene directamente de la definición de $K_a$, y del hecho que $B/\abs{\cdott}^d\Chi_{\abs{x}\geq a}(\cdott)\in\lp{2}{\reales^d}$. 
+
+La segunda afirmación, a diferencia de la primera, requiere algunas observaciones preliminares. 
+\begin{enumerate}[(a)]
+    \item Propiedades de las funciones $k^{(a)}(x):=a^{-d}K(a^{-1}x)$: Sea $a>0$. La función $k^{(a)}$  también satisface \eqref{lem33.1}, \eqref{lem33.2} y \eqref{lem33.3} con las mismas cotas de $B$. Para ver esto, observemos lo siguiente: Por una parte, para casi todo $x\in\reales^d$ se cumple que
+\begin{align*}
+    \abss{k^{(a)}(x)}=\abs{a^{-d}K(a^{-1}x)}\leq Ba^{-d}\abs {a^{-1}x}^{-d}=B\abss{x}^{-d}.
+\end{align*}
+También,
+\begin{multline*}
+    \int_{\abs{x}\geq 2\abs{y}}\abs{k^{(a)}(x-y)-k^{(a)}(x)}\, dx=a^{-n}\int_{\abs{x}\geq 2\abs{y}}\abs{K\abierto{\frac{x}{a}-y}-K\abierto{\frac{x}{a}}}\, dx\\
+    =\int_{\abs{x}\geq 2\abs{y}/a}\abs{K(x-y)-K(x)}\, dx\leq B.
+\end{multline*}
+Por otra parte, la propiedad de cancelación para $k^{(a)}$, enunciada en \eqref{lem33.3}, se sigue inmediatamente de la misma propiedad para $K$. 
+    \item Si $k$ se define como en \eqref{lem33.4}, sustituyendo $K$ por $k^{(a^{-1})}$, entonces $a^{-d}k(a^{-1}x)=K_a(x)$, para todo $x\in\reales^d$: Basta llevar a cabo un cálculo directo. En efecto,
+\begin{align*}
+    a^{-d}k(a^{-1}x)&=
+    \begin{cases}
+    a^{-d}(a^dK(a(a^{-1}x))),&a^{-1}\abs{x}\geq 1\\
+    0,&a^{-1}\abs{x}<1
+    \end{cases}\\
+    &=\begin{cases}
+    K(x),&\abs{x}\geq a\\
+    0,&\abs{x}<a
+    \end{cases}\\
+    &=K_a(x).
+\end{align*}
+    \item Transformada de Fourier de $a^{-d}k(a^{-1}\cdot)$: La Propiedad 4 del Teorema (\textbf{proptf}) y la Proposición \textbf{ces03p2} nos permite concluir que
+    $$\fina{F}_2(a^{-d}k(a^{-1}(\cdott)))=\fina{F}_2(k(a(\cdott)))$$
+    \item Reducción del problema:  En vista de (c), basta probar el resultado para $k$, y en virtud de (a), se obtiene que basta probar la afirmación para $a=1$, pues el mismo argumento puede aplicarse a $k$, obteniendo la misma cota que para el caso $a=1$.
+\end{enumerate}
+Ahora vamos a probar la siguiente propiedad: existe $C>0$ que depende únicamente de la dimensión tal que para todo $y\neq 0$, 
+\begin{equation}\label{lem33.5}
+\int_{\abs{x}\geq 2\abs{y}}\abss{K_1(x-y)-K_1(x)}\, dx\leq CB.
+\end{equation}
+Para ello, notemos que no es posible la existencia de algún $x\in\reales^d$ tal que $\abs{x-y}<1$ y $\abs{x}\geq 2\abs{y}$, si es el caso que $\abs{y}\geq 1$, pues de ser así se obtiene que
+$$\abs{y}\leq\abs{x}-\abs{y}\leq\abs{x-y}<1.$$
+También observemos que si $\abs{y}<1$, existen puntos en $\reales^d$ tal que $\abs{x}\geq 2\abs{y}$ y $\abs{x-y}<1$. Así pues, al considerar $y\in\reales^d$ tal que $\abs{y}\geq 1$,
+$$\int_{\abs{x}\geq 2\abs{y}}\abss{K_1(x-y)-K_1(x)}\, dx=\int_{\abs{x}\geq 2\abs{y}}\abss{K(x-y)-K(x)}\, dx<B.$$
+Para el caso en que $\abs{y}<1$ podemos descomponer la integral de la siguiente forma:
+\begin{multline*}
+\int\displaylimits_{\abs{x}\geq 2\abs{y}}\abss{K_1(x-y)-K_1(x)}=\int\displaylimits_{\substack{\abs{x}\geq 2\abs{y},\\ \abs{x-y}\geq 1,\\ \abs{x}\geq 1}}\abs{K_1(x-y)-K_1(x)}\, dx \\ 
++ \int\displaylimits_{\substack{\abs{x}\geq 2\abs{y},\\ \abs{x-y}\geq 1,\\ \abs{x}< 1}}\abs{K_1(x-y)-K_1(x)}\, dx+\int\displaylimits_{\substack{\abs{x}\geq 2\abs{y},\\ \abs{x-y}< 1}}\abs{K_1(x-y)-K_1(x)}\, dx,
+\end{multline*}
+Si a las tres integrales al lado derecho de la igualdad las denotamos por $I_1,I_2$ e $I_3$, de izquierda a derecha, obtenemos que 
+$$
+I_1=\int\displaylimits_{{\abs{x}\geq 2\abs{y},\, \abs{x-y}\geq 1,\,\abs{x}\geq 1}}\abs{K(x-y)-K(x)}\, dx\leq B.
+$$
+Para estimar $I_2$ notemos que existe $N>2$ tal que $\abs{x-z}\leq N$, para todo $x$ que satisface las condiciones del dominio de integración de $I_2$, y todo $z\in\reales^d$ tal que $0<\abs{z}< 1$. Por lo tanto,
+$$I_2\leq\int\displaylimits_{\substack{\abs{x-y}\geq 1,\\ \abs{x}<1}}\abs{K(x-y)}\, dx\leq\int\displaylimits_{1\leq\abs{x-y}\leq N}\frac{B}{\abs{x-y}^d}\, dx\leq \int\displaylimits_{1\leq\abs{x}\leq N}\frac{B}{\abs{x}^d}\, dx=C_2B,$$
+donde $C_2$ denota la integral $\int\displaylimits_{1\leq\abs{x}\leq N}\frac{1}{\abs{x}^d}\, dx$.
+La estimación para $I_3$ se sigue de la definición de $K_1$, pues
+$$I_3=\int\displaylimits_{\substack{\abs{x}\geq 2\abs{y},\\ \abs{x-y}< 1}}\abs{K(x)}\, dx=\int\displaylimits_{1\leq\abs{x}\leq 2}\abs{K(x)}\, dx\leq\int\displaylimits_{1\leq\abs{x}\leq 2}\frac{B}{\abs{x}^d}\, dx=C_3B,$$
+donde $C_3$ denota la integral $\int\displaylimits_{1\leq\abs{x}\leq 2}\frac{}{\abs{x}^d}\, dx$. Cabe destacar que $C_2$ y $C_3$ dependen únicamente de la dimensión. Por tanto, si $C:=1+C_2+C_3$, se concluye que $C$ satisface \eqref{lem33.5}}.
+
+Ahora bien, por la Proposición (\textbf{ces03p2}) podemos considerar $\widehat{K_1}$ como  el siguiente límite en $\lp{2}{\reales^d}$:
+\begin{align*}
+\widehat{K_1}(\xi)=\int\displaylimits_{\abs{x}\leq 1/\abs{\xi}} K_1(x)e^{-2\pi ix\cdot\xi}\, dx+\lim_{R\to\infty}\int\displaylimits_{1/\abs{\xi}\leq\abs{x}\leq R}K_1(x)e^{-2\pi ix\cdot\xi}\, dx.
+\end{align*}
+Observemos que $K_1$ también satisface la Propiedad \eqref{lem33.3}. En consecuencia,
+\begin{align*}
+\abs{\,\,\int\displaylimits_{\abs{x}\leq 1/\abs{\xi}} K_1(x)e^{-2\pi ix\cdot\xi}\, dx}&=\abs{\,\,\int\displaylimits_{\abs{x}\leq 1/\abs{\xi}} K_1(x)[e^{-2\pi ix\cdot\xi}-1]\, dx}\\
+&\leq \int\displaylimits_{\abs{x}\leq 1/\abs{\xi}} \abs{K_1(x)}\abss{e^{-2\pi ix\cdot\xi}-1}\, dx\\
+&\leq2\pi CB\abs{\xi}\int\displaylimits_{\abs{x}\leq 1/\abs{\xi}}\frac{\abs{x}}{\abs{x}^d}\, dx\\
+&=2\pi CB\int\displaylimits_{S^{d-1}}\int\displaylimits_{0}^{1/\abs{\xi}}\frac{1}{r^{d-1}}r^{d-1}\, dr\,d\sigma\\
+&=2\pi CB\abs{\xi}\int\displaylimits_{S^{d-1}}\frac{1}{\abs{\xi}}\, d\sigma=2\pi CB d\abs{B(0,1)}.
+\end{align*}
+\end{document}
